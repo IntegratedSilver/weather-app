@@ -12,7 +12,7 @@ body {
     
 }
 
-#customCard{
+.customCard{
     height: 206px;
     width:120px;
     background-color: #ffffff;
