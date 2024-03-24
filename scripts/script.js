@@ -7,9 +7,9 @@ function fetchCurrentWeather(location) {
         .then(response => response.json())
         .then(data => {
             // Once data is received, extract necessary information and update the HTML for today's weather
-            let currentTemperature = data.main.temp;
-            let maxTemperature = data.main.temp_max;
-            let minTemperature = data.main.temp_min;
+            let currentTemperature = Math.round(data.main.temp); // Round temperature to the nearest integer
+            let maxTemperature = Math.round(data.main.temp_max); // Round max temperature to the nearest integer
+            let minTemperature = Math.round(data.main.temp_min);
 
             // Update the HTML elements for today's weather
             document.querySelector('.currentTemp').textContent = `${currentTemperature}°F`;
@@ -35,13 +35,37 @@ function fetchWeatherForecast(location) {
             for (let i = 1; i < forecastData.length; i++) {
                 let forecast = forecastData[i];
                 let tempElement = document.getElementsByClassName('cardTemp')[i - 1];
-                tempElement.textContent = `${forecast.main.temp}°F`;
+                tempElement.textContent = `${Math.round(forecast.main.temp)}°F`; 
             }
         })
         .catch(error => {
             console.error('Error fetching forecast data:', error);
         });
 }
+
+
+// Toggle side panel when hamburger button is clicked
+document.getElementById('hamburgerButton').addEventListener('click', function() {
+    // Toggle the active class on the side panel
+    document.getElementById('sidePanel').classList.toggle('active');
+    // Hide the hamburger button when the side panel is active
+    document.getElementById('hamburgerButton').style.display = 'none';
+});
+
+
+
+// Close side panel when clicking anywhere else on the page
+document.addEventListener('click', function(event) {
+    let sidePanel = document.getElementById('sidePanel');
+    let hamburgerButton = document.getElementById('hamburgerButton');
+    // Check if the clicked element is not the side panel or the hamburger button
+    if (!sidePanel.contains(event.target) && event.target !== hamburgerButton) {
+        // Hide the side panel and show the hamburger button
+        sidePanel.classList.remove('active');
+        hamburgerButton.style.display = 'block';
+    }
+});
+
 
 // Event listener for when the user submits the location
 document.getElementById('searchBar').addEventListener('change', function(event) {

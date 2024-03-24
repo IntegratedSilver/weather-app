@@ -94,3 +94,57 @@ body {
     color: #ffffff;
     font-size:large;
 }   
+
+/* Style for hamburger button */
+.hamburger-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    width: 40px;
+    height: 40px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    z-index: 1000;
+    outline: none;
+}
+
+.line {
+    display: block;
+    width: 30px;
+    height: 3px;
+    background-color: #000;
+    margin: 8px auto;
+}
+
+/* Style for side panel */
+.side-panel {
+    position: fixed;
+    top: 0;
+    left: -200px; /* Initially hidden */
+    width: 200px;
+    height: 100%;
+    background-color: #f4f4f4;
+    transition: left 0.3s ease-in-out;
+    z-index: 999;
+}
+
+.side-panel ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.side-panel ul li {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.side-panel ul li a {
+    text-decoration: none;
+    color: #000;
+}
+
+/* Show side panel when active class is added to side panel */
+.side-panel.active {
+    left: 0;
+}
