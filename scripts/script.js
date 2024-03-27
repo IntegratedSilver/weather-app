@@ -66,6 +66,17 @@ function fetchWeatherForecast(location) {
     })
   
 }
+//displays the current weekday name
+function updateTodayDayOfWeek() {
+  let currentDate = new Date();
+  let daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  let currentDayOfWeek = daysOfWeek[currentDate.getDay()];
+
+  document.querySelector('.dayOfWeek').textContent = currentDayOfWeek;
+}
+
+
+updateTodayDayOfWeek();
 
 // Toggle side panel when hamburger button is clicked
 document

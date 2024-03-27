@@ -184,3 +184,11 @@ body {
   .favorite-item {
     cursor: pointer;
 }
+
+.color-white{
+    color: white;
+}
+
+h3{
+    color: white;
+}
