@@ -90,3 +90,59 @@ document.getElementById('searchBar').addEventListener('change', function(event) 
     fetchCurrentWeather(location); // Fetch current weather for today
     fetchWeatherForecast(location); // Fetch forecast weather for upcoming days
 });
+
+
+
+
+document.getElementById('searchBar').addEventListener('keydown', function(event) {
+    if (event.key === '+') {
+        let location = event.target.value.trim();
+        fetchCurrentWeather(location); // Fetch current weather for today
+        fetchWeatherForecast(location); // Fetch forecast weather for upcoming days
+        
+        // Add the location to the favorites list
+        addToFavorites(location);
+        
+        // Clear the input field after adding to favorites
+        event.target.value = '';
+    }
+});
+
+function addToFavorites(location) {
+    let favoritesList = document.getElementById('favoritesList');
+    
+    // Create a new h3 element for the location
+    let newLocation = document.createElement('h3');
+    newLocation.textContent = location;
+    
+    // Add the class "favorite-item" to the new location element
+    newLocation.classList.add('favorite-item');
+    
+    // Add event listener to fetch and display weather for the location when clicked
+    newLocation.addEventListener('click', function() {
+        fetchCurrentWeather(location); // Fetch current weather for the selected location
+        fetchWeatherForecast(location); // Fetch forecast weather for the selected location
+    });
+    
+    // Create a span element for the trash can icon
+    let deleteIcon = document.createElement('span');
+    deleteIcon.textContent = '🗑️';
+    deleteIcon.classList.add('delete-icon');
+    
+    // Add event listener to delete the location when clicked
+    deleteIcon.addEventListener('click', function() {
+        favoritesList.removeChild(newLocation); // Remove the location from the favorites list
+    });
+    
+    // Append the location and delete icon to the favorites list
+    newLocation.appendChild(deleteIcon);
+    favoritesList.appendChild(newLocation);
+}
+
+// Add event listeners to each favorite location item
+document.querySelectorAll('.favorite-item').forEach(item => {
+    item.addEventListener('click', () => {
+        let locationName = item.textContent.trim();
+        handleFavoriteClick(locationName); 
+    });
+});

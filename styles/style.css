@@ -176,3 +176,7 @@ body {
     top: 50px;
     left: 570px;
   }
+
+  .favorite-item {
+    cursor: pointer;
+}
