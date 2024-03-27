@@ -39,7 +39,6 @@ function fetchCurrentWeather(location) {
     })
    
 }
-
 function fetchWeatherForecast(location) {
   let apiKey = "29db8c70811a71a78c98ddaf165923b0";
   let apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${location}&appid=${apiKey}&units=imperial`;
